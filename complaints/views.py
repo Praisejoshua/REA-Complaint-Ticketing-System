@@ -107,7 +107,7 @@ def hod_approval_response_view(request, uid, action):
 
         subject = f"[ACTION REQUIRED] New Complaint Approved – ICT Response Needed"
         from_email = settings.DEFAULT_FROM_EMAIL
-        to_email = ['praizjoshua263@gmail.com']
+        to_email = ['eyo.adonis@rea.gov.ng']
 
         context = {
             'ticket': ticket,

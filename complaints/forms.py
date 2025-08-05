@@ -14,7 +14,7 @@ HOD_EMAIL_CHOICES = [
     ('uba.patrick@rea.gov.ng', 'M&E - Director'),
     ('ibeh.edith@rea.gov.ng', 'Protocol - HOD'),
     ('eyo.adonis@rea.gov.ng', 'ICT - HOD'),
-    ('praizjoshua263@gmail.com', 'TESTER'),
+    # ('praizjoshua263@gmail.com', 'TESTER'),
 ]
 
 class InitialTicketForm(forms.ModelForm):
