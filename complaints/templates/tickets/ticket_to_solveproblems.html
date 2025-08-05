@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ICT Action Required</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #333;
+        }
+        .email-container {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        h2 {
+            color: #04643c;
+        }
+        p {
+            margin: 8px 0;
+        }
+        strong {
+            display: inline-block;
+            width: 150px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            background: #04643c;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h2>New Complaint Requires ICT Response</h2>
+
+        <p><strong>Complaint Name:</strong> {{ ticket.complaint_name }}</p>
+        <p><strong>Department:</strong> {{ ticket.department }}</p>
+        <p><strong>Problem:</strong> {{ ticket.problem }}</p>
+        <p><strong>Description:</strong> {{ ticket.problem_description }}</p>
+
+        <hr>
+
+        <p><a href="{{ form_link }}">🛠️ Fill ICT Response Form</a></p>
+    </div>
+</body>
+</html>

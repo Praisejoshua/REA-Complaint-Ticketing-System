@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Ticket</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ticket_common.css' %}">
+</head>
+<body>
+     <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 80px; display: block; margin: auto; margin-bottom: 20px;">
+    <h2>Create a Complaint Ticket</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <label>Name of Complaint:</label>
+        {{ form.complaint_name }}
+
+        <label>Department/Unit/Section:</label>
+        {{ form.department }}
+
+        <label>Problem:</label>
+        {{ form.problem }}
+
+        <label>Problem Description:</label>
+        {{ form.problem_description }}
+
+        <label>Send To HOD (Email):</label>
+        {{ form.hod_email }}
+
+
+        <button type="submit">Submit to Head of Department for Approval</button>
+    </form>
+</body>
+</html>

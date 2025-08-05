@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Review Submission</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/ticket_common.css' %}">
+</head>
+<body>
+    
+     <img src="{% static 'images/logo.png' %}" alt="Logo" style="height: 80px; display: block; margin: auto; margin-bottom: 20px;">
+    <h2>Review Complaint Submission</h2>
+
+    <p><strong>Name of Complaint:</strong> {{ ticket.complaint_name }}</p>
+    <p><strong>Department/Unit/Section:</strong> {{ ticket.department }}</p>
+    <p><strong>Problem:</strong> {{ ticket.problem }}</p>
+    <p><strong>Description:</strong> {{ ticket.problem_description }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button name="approve" type="submit">✅ Approve</button>
+        <button name="cancel" type="submit">❌ Do Not Approve</button>
+    </form>
+</body>
+</html>

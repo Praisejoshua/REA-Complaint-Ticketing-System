@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HOD Approval Result</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/hod_response.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="alert-box">
+            <h2>{{ message }}</h2>
+        </div>
+        <p><strong>Ticket Number:</strong> {{ ticket.ticket_number }}</p>
+        <p><strong>Status:</strong> {{ ticket.status }}</p>
+        <!-- <a href="{% url 'ticket-list' %}" class="btn mt-3">🔙 Back to Tickets</a> -->
+    </div>
+</body>
+</html>
