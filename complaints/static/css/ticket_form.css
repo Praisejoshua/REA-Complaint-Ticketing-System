@@ -40,3 +40,29 @@
         .hidden {
             display: none;
         }
+                footer {
+            margin-top: 40px;
+            padding: 15px;
+            background-color: #f4f4f4;
+            text-align: center;
+            font-size: 14px;
+            color: #333;
+            border-top: 1px solid #ddd;
+        }
+        footer {
+            background-color: #222;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        footer a {
+            color: #f1f1f1;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+        footer a:hover {
+            color: #00bcd4;
+        }
