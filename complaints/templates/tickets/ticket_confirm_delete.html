@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Ticket</title>
+    <link rel="stylesheet" href="{% static 'css/ticket_list.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .delete-container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            color: #04643c;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: darkred;
+        }
+
+        .btn-secondary {
+            background-color: grey;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #555;
+        }
+
+        footer {
+            margin-top: 40px;
+            background-color: #222;
+            color: #f1f1f1;
+            text-align: center;
+            padding: 15px 10px;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: #f1f1f1;
+            text-decoration: none;
+            margin: 0 5px;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'images/logo.png' %}" alt="Logo" style="height:80px; display:block; margin:auto; margin-bottom:20px;">
+
+    <div class="delete-container">
+        <h1>Delete Ticket {{ object.ticket_number }}</h1>
+        <p>Are you sure you want to delete this ticket? <br>This action <strong>cannot</strong> be undone.</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'ticket-list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+    <footer>
+         Developed by: <strong>REA I.C.T Team</strong>
+    </footer>
+</body>
+</html>

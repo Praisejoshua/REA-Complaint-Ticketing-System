@@ -7,7 +7,8 @@ from .views import (
     TicketDetailView,
     ticket_pdf_view,
     hod_approval_response_view,
-    TicketSubmittedView
+    TicketSubmittedView,
+    TicketDeleteView
 )
 
 urlpatterns = [
@@ -19,5 +20,6 @@ urlpatterns = [
     path('<int:pk>/pdf/', ticket_pdf_view, name='ticket-pdf'),
     path('ticket/approve-response/<uid>/<action>/', hod_approval_response_view, name='ticket-hod-response'),
     path('submitted/', TicketSubmittedView.as_view(), name='ticket-submitted'),
+    path('delete/<int:pk>/', TicketDeleteView.as_view(), name='ticket-delete'),
 
 ]

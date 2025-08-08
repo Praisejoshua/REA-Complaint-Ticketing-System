@@ -1,4 +1,4 @@
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, ListView
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, ListView, DeleteView
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponse
@@ -10,7 +10,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.views import View 
 from xhtml2pdf import pisa
-
+from django.contrib.staticfiles import finders
+import os
 from .models import Ticket
 from .forms import InitialTicketForm, FullTicketForm
 
@@ -151,19 +152,68 @@ class TicketListView(ListView):
     template_name = 'tickets/ticket_list.html'
     context_object_name = 'tickets'
 
+class TicketDeleteView(DeleteView):
+    model = Ticket
+    template_name = 'tickets/ticket_confirm_delete.html'
+    success_url = reverse_lazy('ticket-list')
+
 
 class TicketDetailView(DetailView):
     model = Ticket
     template_name = 'tickets/ticket_detail.html'
 
 
+# def ticket_pdf_view(request, pk):
+#     ticket = Ticket.objects.get(pk=pk)
+#     template = get_template('tickets/ticket_pdf.html')
+#     html = template.render({'ticket': ticket})
+#     response = HttpResponse(content_type='application/pdf')
+#     response['Content-Disposition'] = f'attachment; filename="ticket_{ticket.ticket_number}.pdf"'
+#     pisa_status = pisa.CreatePDF(html, dest=response)
+#     if pisa_status.err:
+#         return HttpResponse('We had some errors with PDF generation <pre>' + html + '</pre>')
+#     return response
+
+
+# tickets/views.py
+
+
+
+
+# 🔹 Helper function for xhtml2pdf
+def link_callback(uri, rel):
+    """
+    Convert HTML URIs to absolute system paths so xhtml2pdf can access those resources.
+    """
+    # If uri starts with /static/, resolve to static files directory
+    result = finders.find(uri.replace(settings.STATIC_URL, ""))
+    if result:
+        if not isinstance(result, (list, tuple)):
+            result = [result]
+        path = os.path.realpath(result[0])
+    else:
+        # Otherwise, assume it's a full absolute URL or file path
+        path = os.path.join(settings.STATIC_ROOT, uri.replace(settings.STATIC_URL, ""))
+
+    if not os.path.isfile(path):
+        raise Exception(f'Media URI must start with {settings.STATIC_URL} or be a valid file: {uri}')
+    return path
+
+# 🔹 Your PDF view
 def ticket_pdf_view(request, pk):
     ticket = Ticket.objects.get(pk=pk)
     template = get_template('tickets/ticket_pdf.html')
     html = template.render({'ticket': ticket})
+    
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="ticket_{ticket.ticket_number}.pdf"'
-    pisa_status = pisa.CreatePDF(html, dest=response)
+
+    pisa_status = pisa.CreatePDF(
+        html, 
+        dest=response, 
+        link_callback=link_callback  # ✅ This is the fix for the logo issue
+    )
+
     if pisa_status.err:
         return HttpResponse('We had some errors with PDF generation <pre>' + html + '</pre>')
     return response
