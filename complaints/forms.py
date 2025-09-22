@@ -3,17 +3,18 @@ from django import forms
 from .models import Ticket
 
 HOD_EMAIL_CHOICES = [
-    ('suleiman.garba@rea.gov.ng', 'HRM - Director'),
-    ('ailen.japhet@rea.gov.ng', 'PR&D - Ag. Director'),
+    ('ailen.japhet@rea.gov.ng', 'HRM - Ag. Director'),
+    ('uba.patrick@rea.gov.ng', 'PR&D - Ag. Director'),
     ('muntari.ibrahim@rea.gov.ng', 'PIO - Ag. Director'),
-    ('ejiogu.cynthia@rea.gov.ng', 'REF - Director'),
-    ('owoyomi.ademola@rea.gov.ng', 'Project - Ag. Director'),
+    ('', 'REF - Ag. Director'),
+    ('magaji.dambatta@rea.gov.ng', 'Project - Ag. Director'),
     ('bulus.maiyaki@rea.gov.ng', 'Procurement - Director'),
     ('kashim.ibrahim@rea.gov.ng', 'Legal - Director'),
-    ('magaji.abdu@rea.gov.ng', 'Audit - Ag. Director'),
-    ('uba.patrick@rea.gov.ng', 'M&E - Director'),
+    ('okhareayon.akwe@rea.gov.ng', 'Audit - Ag. Director'),
+    ('', 'M&E - Ag. Director'),
     ('ibeh.edith@rea.gov.ng', 'Protocol - HOD'),
     ('eyo.adonis@rea.gov.ng', 'ICT - HOD'),
+    ('magaji.abdu@rea.gov.ng', 'Finance & Account - Director'),
     # ('praizjoshua263@gmail.com', 'TESTER'),
 ]
 
