@@ -36,3 +36,7 @@ wheel==0.45.1
 whitenoise==6.9.0
 xhtml2pdf==0.2.17
 gunicorn==21.2.0
+psycopg2-binary
+dj-database-url
+
+
